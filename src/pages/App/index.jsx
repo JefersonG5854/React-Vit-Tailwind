@@ -1,4 +1,4 @@
-// Todo lo necesario de ruras
+// Todo lo necesario de rutas
 import { useRoutes, BrowserRouter } from 'react-router-dom'
 import { ShoppingCartProvider } from '../../context'
 //Paginas
@@ -8,8 +8,8 @@ import MyOrder from '../MyOrder'
 import MyOrders from '../MyOrders'
 import NotFound from '../NotFound'
 import SignIn from '../SignIn'
-
 import Navbar from '../../components/Navbar'
+import CheckoutSideMenu from '../../components/CheckoutSideMenu'
 
 import './App.css'
 
@@ -32,6 +32,7 @@ const App = ()=> {
       <BrowserRouter>
         <AppRoutes />
         <Navbar />
+        <CheckoutSideMenu/>
       </BrowserRouter>
     </ShoppingCartProvider>
   )
