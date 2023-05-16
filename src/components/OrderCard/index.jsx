@@ -2,9 +2,11 @@ import { XCircleIcon } from '@heroicons/react/24/outline'
 
 const OrderCard = props => {
   const {
+    id,
     title,
     imageUrl,
-    price
+    price,
+    handleDelete
   } = props
 
   return (
@@ -23,6 +25,7 @@ const OrderCard = props => {
       <div className='flex items-center gap-2'>
         <p className='text-lg font-medium'>{price} </p>
         <XCircleIcon
+          onClick={()=>handleDelete(id)}
           className='className="h-8 w-8 text-black" cursor-pointer '
         ></XCircleIcon>
       </div>

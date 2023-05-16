@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { XCircleIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
 import { ShoppingCartContext } from '../../context';
 import OrderCard from '../OrderCard';
@@ -8,6 +8,11 @@ import './style.css'
 
 const CheckoutSideMenu = () => {
   const context = useContext(ShoppingCartContext);
+
+  const handleDelete = (id) =>{
+    const filteredProducts = context.cartProducts.filter(product => product.id != id)
+    context.setCartProducts(filteredProducts);
+  }
 
   return (
     <aside
@@ -18,20 +23,22 @@ const CheckoutSideMenu = () => {
           My order
         </h2>
         <div>
-          <XCircleIcon
+          <XMarkIcon
             className='className="h-8 w-8 text-black" cursor-pointer '
             onClick={() => context.closeCheckoutSideMenu()}
-          ></XCircleIcon>
+          ></XMarkIcon>
         </div>
       </div>
       <div className='px-6 overflow-y-scroll'>
         {
           context.cartProducts.map(product => (
-            <OrderCard
-              key={product.id}
-              title={product.title}
-              imageUrl={product.images}
-              price={product.price}
+            <OrderCard  
+              key           = { product.id }
+              id            = { product.id }
+              title         = { product.title }
+              imageUrl      = { product.images }
+              price         = { product.price }
+              handleDelete  = { handleDelete }
             />
           ))
         }
