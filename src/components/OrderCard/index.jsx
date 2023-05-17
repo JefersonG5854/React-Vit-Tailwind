@@ -8,6 +8,15 @@ const OrderCard = props => {
     price,
     handleDelete
   } = props
+  let renderTrash
+
+  if (handleDelete){
+    renderTrash = 
+    <TrashIcon
+      onClick={() => handleDelete(id)}
+      className='className="h-6 w-6 text-black" cursor-pointer '
+    ></TrashIcon>
+  }
 
   return (
     <div className='flex justify-between items-center mb-3 bg-slate-500/5'>
@@ -24,10 +33,7 @@ const OrderCard = props => {
 
       <div className='flex items-center gap-2 px-2'>
         <p className='text-lg font-medium'>{price} </p>
-        <TrashIcon
-          onClick={()=>handleDelete(id)}
-          className='className="h-6 w-6 text-black" cursor-pointer '
-        ></TrashIcon>
+        {renderTrash}
       </div>
     </div>
   )
