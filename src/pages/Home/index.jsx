@@ -11,30 +11,20 @@ function Home() {
   const context = useContext(ShoppingCartContext)
 
   const renderView = () => {
-    if (context.searchByTitle?.length >0){
-      if (context.filteredItems?.length > 0) {
-        return (
-          context.filteredItems?.map(item => (
-            <Card key={item.id} data={item} />
-          ))
-        )
-      }
-      else{
-        return(
-          <div className='flex gap-4'>
-            <NoSymbolIcon className="h-5 w-5 text-black/70" ></NoSymbolIcon>
-            Search not found a product
-          </div>
-        )
-      }
-      
-    }
-    else
-    {
-      return(
-        context.items?.map(item => (
+  
+    if (context.filteredItems?.length > 0) {
+      return (
+        context.filteredItems?.map(item => (
           <Card key={item.id} data={item} />
         ))
+      )
+    }
+    else{
+      return(
+        <div className='flex gap-4'>
+          <NoSymbolIcon className="h-5 w-5 text-black/70" ></NoSymbolIcon>
+          Search not found a product
+        </div>
       )
     }
   }

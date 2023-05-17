@@ -47,11 +47,32 @@ export const ShoppingCartProvider = ({children}) =>{
     return items?.filter(item => item.title.toLowerCase().includes(shearchValue.toLowerCase()))
   }
 
-  useEffect(() => {
-    if (searchByTitle){
-      setfilteredItems(filteredItemsByTitle(items, searchByTitle))
+  //  Search by class
+  const [searchByClass, setSearchByClass] = useState('');
+
+  const filterItemsByClass = (items, searchByClass) => {
+
+    return items?.filter(item => item.category.name.toLowerCase().includes(searchByClass.toLowerCase()))
+  }
+
+  const filterBy = (items, shearchByTitle, shearchByClass) => {
+
+    if (shearchByTitle && !shearchByClass) {
+      return filteredItemsByTitle(items, searchByTitle)
     }
-  }, [items, searchByTitle])
+    else if (shearchByClass && !shearchByTitle) {
+      return filterItemsByClass(items, searchByClass)
+    }
+    else if (shearchByClass && shearchByTitle) {
+      return filterItemsByClass(items, searchByClass).filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+    }
+    else{
+      return items
+    }
+  }
+  useEffect(() => {
+    setfilteredItems(filterBy(items, searchByTitle, searchByClass))
+  }, [items, searchByTitle, searchByClass])
 
   return (
     <ShoppingCartContext.Provider 
@@ -77,7 +98,9 @@ export const ShoppingCartProvider = ({children}) =>{
         setSearchByTitle,
         filteredItems,
         setfilteredItems,
-        filteredItemsByTitle
+        filteredItemsByTitle,
+        searchByClass, 
+        setSearchByClass
       }}
     >
       {children}
