@@ -1,4 +1,4 @@
-import { XCircleIcon } from '@heroicons/react/24/outline'
+import { TrashIcon } from '@heroicons/react/24/outline'
 
 const OrderCard = props => {
   const {
@@ -22,12 +22,12 @@ const OrderCard = props => {
         <p className='text-sm font-light'>{title} </p>
       </div>
 
-      <div className='flex items-center gap-2'>
+      <div className='flex items-center gap-2 px-2'>
         <p className='text-lg font-medium'>{price} </p>
-        <XCircleIcon
+        <TrashIcon
           onClick={()=>handleDelete(id)}
-          className='className="h-8 w-8 text-black" cursor-pointer '
-        ></XCircleIcon>
+          className='className="h-6 w-6 text-black" cursor-pointer '
+        ></TrashIcon>
       </div>
     </div>
   )
